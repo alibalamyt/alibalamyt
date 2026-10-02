@@ -1,139 +1,195 @@
 <!doctype html>
 <html lang="fa" dir="rtl"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#0e5c63"><title>برنامه‌ریز من</title>
+<meta name="theme-color" content="#0b1f33"><title>برنامه‌ریز | کار، پول، روزهای من</title>
 <link rel="manifest" href="manifest.json"><link rel="icon" href="icon.svg">
 <style>
-:root{--bg:#eef2ef;--card:#fff;--ink:#17262b;--mute:#6b7b80;--ac:#0e7c86;--ac2:#0e5c63;--ok:#2f9e6b;--bad:#d1495b;--warn:#e0a030;--ln:#dce4e1}
-@media(prefers-color-scheme:dark){:root{--bg:#0f1b1e;--card:#18282c;--ink:#e6efee;--mute:#8da0a4;--ln:#27393d;--ac:#35b3bd}}
+:root{--bg:#f4f6f8;--card:#fff;--ink:#0b1f33;--mute:#66788a;--ac:#12b886;--ac2:#0b8f68;--gold:#f2b84b;--bad:#e5484d;--ln:#e3e8ee;--nv:#0b1f33}
+@media(prefers-color-scheme:dark){:root{--bg:#08141f;--card:#0f2133;--ink:#e8eef5;--mute:#8ba0b4;--ln:#1d3248}}
 *{box-sizing:border-box;margin:0}
-body{font:15px/1.7 Tahoma,system-ui,sans-serif;background:var(--bg);color:var(--ink);padding:env(safe-area-inset-top) 0 90px}
-#app{max-width:640px;margin:auto;padding:14px}
-h1{font-size:22px}h2{font-size:15px;margin:18px 0 8px}
-.card{background:var(--card);border:1px solid var(--ln);border-radius:14px;padding:12px;margin-bottom:10px}
+body{font:15px/1.7 Tahoma,system-ui,sans-serif;background:var(--bg);color:var(--ink);padding:env(safe-area-inset-top) 0 84px}
+#app{max-width:900px;margin:auto;padding:16px}
+h1{font-size:24px}h2{font-size:15px;margin:20px 0 8px}
+.card{background:var(--card);border:1px solid var(--ln);border-radius:16px;padding:14px;margin-bottom:12px}
 .sub{color:var(--mute);font-size:13px}
-input,select,button{font:inherit;color:inherit}
-input,select{width:100%;padding:9px;border:1px solid var(--ln);border-radius:9px;background:var(--bg);margin-bottom:8px}
+input,select,textarea,button{font:inherit;color:inherit}
+input,select,textarea{width:100%;padding:10px;border:1px solid var(--ln);border-radius:10px;background:var(--bg);margin-bottom:8px}
 input[type=checkbox]{width:20px;height:20px;margin:0;accent-color:var(--ac)}
 .row{display:flex;gap:8px;align-items:center}.row>*{flex:1}.row>.n{flex:none}
-.btn{background:var(--ac2);color:#fff;border:0;border-radius:10px;padding:10px 14px;cursor:pointer}
-.btn.g{background:transparent;color:var(--ac);border:1px solid var(--ln)}
+.btn{background:var(--nv);color:#fff;border:0;border-radius:11px;padding:10px 16px;cursor:pointer}
+.btn.p{background:var(--ac);color:#04271c;font-weight:bold}.btn.g{background:transparent;color:var(--ink);border:1px solid var(--ln)}
+@media(prefers-color-scheme:dark){.btn{background:#1d3a57}}
 .x{background:none;border:0;color:var(--mute);font-size:18px;cursor:pointer;flex:none}
-.t{display:flex;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid var(--ln)}
-.t:last-child{border:0}.t .b{flex:1}.done .tt{text-decoration:line-through;opacity:.5}
-.tag{font-size:11px;padding:1px 8px;border-radius:99px;background:var(--bg);border:1px solid var(--ln);margin-inline-start:4px}
-.q1{border-color:var(--bad);color:var(--bad)}.q2{border-color:var(--ac);color:var(--ac)}.q3{border-color:var(--warn);color:var(--warn)}
-.late{color:var(--bad)}
-.big{font-size:24px;font-weight:bold}
-.bar{height:9px;border-radius:9px;background:var(--bg);overflow:hidden;margin:4px 0 10px}.bar i{display:block;height:100%;background:var(--ac)}
-.bar i.over{background:var(--bad)}.bar i.good{background:var(--ok)}
-.grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;text-align:center}
-.pm{font-size:34px;font-variant-numeric:tabular-nums;text-align:center}
-nav{position:fixed;bottom:0;inset-inline:0;display:flex;background:var(--card);border-top:1px solid var(--ln);padding-bottom:env(safe-area-inset-bottom)}
-nav button{flex:1;padding:13px 0;border:0;background:none;color:var(--mute);cursor:pointer}
-nav button.on{color:var(--ac);font-weight:bold;box-shadow:inset 0 -3px var(--ac)}
-#toast{position:fixed;bottom:80px;inset-inline:0;text-align:center;pointer-events:none}
-#toast span{background:var(--ink);color:var(--bg);padding:8px 16px;border-radius:99px;font-size:13px}
+.t{display:flex;gap:10px;align-items:center;padding:9px 0;border-bottom:1px solid var(--ln)}.t:last-child{border:0}.t .b{flex:1}
+.done .tt{text-decoration:line-through;opacity:.5}
+.tag{font-size:11px;padding:1px 8px;border-radius:99px;border:1px solid var(--ln);margin-inline-start:4px}
+.q1{border-color:var(--bad);color:var(--bad)}.q2{border-color:var(--ac);color:var(--ac2)}.q3{border-color:var(--gold);color:#a8741a}
+.late{color:var(--bad)}.big{font-size:22px;font-weight:bold}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}
+.stat{background:var(--card);border:1px solid var(--ln);border-radius:16px;padding:12px}
+.bar{height:9px;border-radius:9px;background:var(--bg);overflow:hidden;margin:4px 0 10px}.bar i{display:block;height:100%;background:var(--ac)}.bar i.over{background:var(--bad)}
+.ch{display:flex;align-items:flex-end;gap:10px;height:120px}.ch div{flex:1;text-align:center}.ch .p{display:flex;gap:3px;align-items:flex-end;height:100px}.ch .p i{flex:1;border-radius:5px 5px 0 0;min-height:2px}
+.mx{display:grid;grid-template-columns:1fr 1fr;gap:10px}.mx .card{min-height:110px}
+nav{display:none;position:fixed;bottom:0;inset-inline:0;background:var(--card);border-top:1px solid var(--ln);padding-bottom:env(safe-area-inset-bottom);z-index:5}
+body.in nav{display:flex}nav button{flex:1;padding:8px 0;border:0;background:none;color:var(--mute);cursor:pointer;font-size:11px}
+nav button span{display:block;font-size:19px}nav button.on{color:var(--ac2);font-weight:bold}
+@media(min-width:900px){body.in{padding:0 230px 0 0}body.in nav{flex-direction:column;inset:0 0 0 auto;width:230px;border:0;border-left:1px solid var(--ln);padding:24px 12px}nav button{display:flex;gap:10px;align-items:center;font-size:15px;padding:12px;border-radius:12px;text-align:right}nav button span{display:inline}nav button.on{background:var(--bg)}}
+.login{min-height:100vh;margin:-16px;display:grid;background:var(--nv);color:#fff;background-image:repeating-linear-gradient(0deg,transparent 0 39px,rgba(255,255,255,.05) 39px 40px)}
+.login .in{padding:36px 24px;max-width:480px;margin:auto}.login h1{font-size:44px;line-height:1.2;margin:14px 0}
+.login li{list-style:none;padding:5px 0;color:#b9c8d6}.login li:before{content:'✓ ';color:var(--ac)}
+.gb{background:#fff;color:#1f2937;border:0;border-radius:12px;padding:13px;width:100%;font-weight:bold;cursor:pointer;margin:18px 0 8px}.gb b{color:#4285f4;margin-inline-end:8px}
+.login .btn.g{width:100%;color:#fff;border-color:#2a4660}.login input{background:#12304a;border-color:#2a4660;color:#fff}
+#toast{position:fixed;bottom:90px;inset-inline:0;text-align:center;pointer-events:none;z-index:9}#toast span{background:var(--ink);color:var(--bg);padding:8px 16px;border-radius:99px;font-size:13px}
+.av{width:38px;height:38px;border-radius:50%;background:var(--ac);display:grid;place-items:center;color:#04271c;font-weight:bold;flex:none;object-fit:cover}
 </style></head><body>
 <div id="app"></div><nav id="nav"></nav><div id="toast"></div>
 <script>
-const $=s=>document.querySelector(s),KEY='planner_v1';
-const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const uid=()=>Math.random().toString(36).slice(2,9);
+const CLIENT_ID=''; /* Client ID گوگل را اینجا بگذارید (راهنما: README.md) */
+const SCOPE='openid email profile https://www.googleapis.com/auth/drive.appdata';
+const $=s=>document.querySelector(s),esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const uid=()=>Math.random().toString(36).slice(2,9),LS=localStorage;
 const today=()=>new Date(Date.now()-new Date().getTimezoneOffset()*6e4).toISOString().slice(0,10);
-let S=JSON.parse(localStorage.getItem(KEY)||'null')||{tasks:[],tx:[],cur:'تومان',ts:0};
-let CID=localStorage.getItem('planner_cid')||'';
+const addD=(d,n)=>{const x=new Date(d+'T12:00');x.setDate(x.getDate()+n);return x.toISOString().slice(0,10)};
 const MN=['فروردین','اردیبهشت','خرداد','تیر','مرداد','شهریور','مهر','آبان','آذر','دی','بهمن','اسفند'];
-const CATS={'خوراک':'n','مسکن':'n','قبض':'n','حمل‌ونقل':'n','درمان':'n','تفریح':'w','خرید':'w','رستوران':'w','سایر':'w','پس‌انداز':'s','سرمایه‌گذاری':'s'},INC=['حقوق','پروژه','سایر'];
+const CATS={'خوراک':'n','مسکن':'n','قبض':'n','حمل‌ونقل':'n','درمان':'n','تفریح':'w','خرید':'w','رستوران':'w','سایر':'w','پس‌انداز':'s','سرمایه‌گذاری':'s'},INC=['حقوق','پروژه','سایر'],CK=Object.keys(CATS);
 const jp=d=>{const o={};new Intl.DateTimeFormat('en-u-ca-persian-nu-latn',{year:'numeric',month:'numeric',day:'numeric'}).formatToParts(new Date(d+'T12:00')).forEach(p=>o[p.type]=p.value);return o};
 const jm=d=>{const o=jp(d);return o.year+'-'+String(o.month).padStart(2,'0')};
+const sh=(m,n)=>{let[y,k]=m.split('-').map(Number);k+=n;while(k>12){k-=12;y++}while(k<1){k+=12;y--}return y+'-'+String(k).padStart(2,'0')};
 const fd=d=>new Intl.DateTimeFormat('fa-IR-u-ca-persian',{weekday:'long',day:'numeric',month:'long'}).format(new Date(d+'T12:00'));
 const fn=n=>Math.round(n).toLocaleString('fa-IR');
-let tab='today',mo=jm(today()),flt='all';
-const tabs=[['today','امروز'],['tasks','کارها'],['fin','مالی'],['set','تنظیمات']];
+const mlabel=m=>{const[y,k]=m.split('-');return MN[k-1]+' '+(+y).toLocaleString('fa-IR',{useGrouping:false})};
+let U=JSON.parse(LS.getItem('planner_user')||'null'),S,tab='dash',mo=jm(today()),flt='all',tv='list',tok=null,tc=null,gst='متصل نیست',smsText='',smsItems=[];
+const DEF=()=>({tasks:[],tx:[],limits:{},goal:{name:'',target:0},cur:'تومان',seen:[],ts:0});
+const load=()=>{S={...DEF(),...JSON.parse(LS.getItem('planner_data_'+(U?U.id:'x'))||'{}')}};
+const P=new URLSearchParams(location.search);let pend=P.get('sms')||P.get('text')||'';if(pend||P.has('title'))history.replaceState(null,'',location.pathname);
+function toast(m){$('#toast').innerHTML='<span>'+esc(m)+'</span>';setTimeout(()=>$('#toast').innerHTML='',2400)}
+function save(){S.ts=Date.now();LS.setItem('planner_data_'+U.id,JSON.stringify(S));render();schedPush()}
+const go=t=>{tab=t;render();scrollTo(0,0)};
 
-function toast(m){$('#toast').innerHTML='<span>'+esc(m)+'</span>';setTimeout(()=>$('#toast').innerHTML='',2200)}
-function save(){S.ts=Date.now();localStorage.setItem(KEY,JSON.stringify(S));render();schedPush()}
-function go(t){tab=t;render();scrollTo(0,0)}
+/* ===== ورود ===== */
+function vLogin(){const need=!CLIENT_ID&&!LS.getItem('planner_cid');
+return `<div class="login"><div class="in"><div class="sub" style="color:#8ba0b4">برنامه‌ریز شخصی</div><h1>کارها، پول و روزهایت،<br>یک‌جا و منظم.</h1>
+<ul><li>ماتریس اولویت و کارهای تکراری</li><li>درآمد، هزینه و بودجه ۵۰/۳۰/۲۰ با تاریخ شمسی</li><li>ثبت خودکار از پیامک بانک (اشتراک‌گذاری یا چسباندن)</li><li>داده‌ها در Google Drive خودتان؛ روی گوشی و کامپیوتر یکی</li></ul>
+${need?`<input id="cid" placeholder="Google OAuth Client ID (یک‌بار)" dir="ltr">`:''}
+<button class="gb" onclick="gLogin()"><b>G</b>ورود با حساب گوگل</button><button class="btn g" onclick="guest()">ادامه بدون حساب (فقط روی این دستگاه)</button>
+<div class="sub" style="margin-top:14px;color:#8ba0b4">هر کاربر فقط داده‌های خودش را در Drive شخصی خودش می‌بیند.</div></div></div>`}
+function guest(){U={id:'local',name:'مهمان'};LS.setItem('planner_user',JSON.stringify(U));boot()}
+function getTc(){if(tc)return tc;const cid=CLIENT_ID||LS.getItem('planner_cid');
+tc=google.accounts.oauth2.initTokenClient({client_id:cid,scope:SCOPE,callback:onTok,error_callback:()=>toast('ورود لغو شد')});return tc}
+function gLogin(){const i=$('#cid');if(i&&i.value.trim())LS.setItem('planner_cid',i.value.trim());
+if(!CLIENT_ID&&!LS.getItem('planner_cid'))return toast('Client ID را وارد کنید');
+if(!window.google||!google.accounts)return toast('اینترنت لازم است');getTc().requestAccessToken({prompt:''})}
+function gAuth(){if(!window.google||!google.accounts)return toast('اینترنت لازم است');getTc().requestAccessToken({prompt:'',hint:U&&U.email})}
+async function onTok(r){if(!r.access_token)return toast('ورود ناموفق بود');tok=r.access_token;
+try{const p=await(await fetch('https://www.googleapis.com/oauth2/v3/userinfo',{headers:{Authorization:'Bearer '+tok}})).json();
+U={id:p.sub,name:p.name||p.email,email:p.email,pic:p.picture};LS.setItem('planner_user',JSON.stringify(U));load();await gSync()}catch(e){toast('خطا در ورود')}boot()}
+function logout(){if(!confirm('از حساب خارج می‌شوید؟ (داده‌ها در Drive می‌مانند)'))return;tok=null;U=null;LS.removeItem('planner_user');boot()}
 
-/* ---------- کارها ---------- */
-const quad=t=>t.imp&&t.urg?['q1','فوری و مهم']:t.imp?['q2','مهم']:t.urg?['q3','فوری']:['','عادی'];
-const qo=t=>t.imp&&t.urg?0:t.imp?1:t.urg?2:3;
-function taskHtml(t){const q=quad(t),late=!t.done&&t.date<today();
-return `<div class="t ${t.done?'done':''}"><input type="checkbox" ${t.done?'checked':''} onchange="tog('${t.id}')">
-<div class="b"><div class="tt">${esc(t.title)}</div><div class="sub ${late?'late':''}">${t.time?t.time+' - ':''}${fd(t.date)}<span class="tag ${q[0]}">${q[1]}</span></div></div>
-<button class="x" onclick="delT('${t.id}')" aria-label="حذف">✕</button></div>`}
-function tog(id){const t=S.tasks.find(x=>x.id==id);t.done=!t.done;save()}
-function delT(id){S.tasks=S.tasks.filter(x=>x.id!=id);save()}
+/* ===== Drive ===== */
+const D='https://www.googleapis.com/drive/v3/files';
+async function gapi(u,o={}){const r=await fetch(u,{...o,headers:{Authorization:'Bearer '+tok,...(o.headers||{})}});if(!r.ok)throw new Error(r.status);return r}
+async function fid(){const r=await(await gapi(D+'?spaces=appDataFolder&q=name%3D%27planner.json%27&fields=files(id)')).json();return r.files[0]&&r.files[0].id}
+async function gPush(){let id=await fid();if(!id)id=(await(await gapi(D,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:'planner.json',parents:['appDataFolder']})})).json()).id;
+await gapi('https://www.googleapis.com/upload/drive/v3/files/'+id+'?uploadType=media',{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify(S)})}
+async function gSync(){if(!tok)return;try{const id=await fid();if(id){const r=await(await gapi(D+'/'+id+'?alt=media')).json();if(r.ts>S.ts){S={...DEF(),...r};LS.setItem('planner_data_'+U.id,JSON.stringify(S))}}
+await gPush();gst='همگام شد '+new Date().toLocaleTimeString('fa-IR')}catch(e){tok=null;gst='اتصال منقضی شد؛ دوباره وصل شوید'}if(U)render()}
+let pt;const schedPush=()=>{if(!tok)return;clearTimeout(pt);pt=setTimeout(()=>gPush().catch(()=>{tok=null;gst='اتصال منقضی شد'}),1500)};
+
+/* ===== کارها ===== */
+const quad=t=>t.imp&&t.urg?['q1','فوری و مهم']:t.imp?['q2','مهم']:t.urg?['q3','فوری']:['','عادی'],qo=t=>t.imp&&t.urg?0:t.imp?1:t.urg?2:3;
+const REP={d:'روزانه',w:'هفتگی'};
+function taskH(t){const q=quad(t),late=!t.done&&t.date<today();
+return `<div class="t ${t.done?'done':''}"><input type="checkbox" ${t.done?'checked':''} onchange="tog('${t.id}')"><div class="b"><div class="tt">${esc(t.title)}</div>
+<div class="sub ${late?'late':''}">${t.time?t.time+' - ':''}${fd(t.date)}<span class="tag ${q[0]}">${q[1]}</span>${t.rep?`<span class="tag">🔁 ${REP[t.rep]}</span>`:''}</div></div><button class="x" onclick="delT('${t.id}')" aria-label="حذف">✕</button></div>`}
+function tog(id){const t=S.tasks.find(x=>x.id==id);t.done=!t.done;if(t.done&&t.rep)S.tasks.push({...t,id:uid(),done:0,date:addD(t.date,t.rep=='d'?1:7)});save()}
+const delT=id=>{S.tasks=S.tasks.filter(x=>x.id!=id);save()};
 function addTask(quick){const title=$('#tt').value.trim();if(!title)return toast('عنوان کار را بنویسید');
-S.tasks.push({id:uid(),title,date:quick?today():($('#td').value||today()),time:quick?'':$('#tm').value,imp:quick?0:$('#ti').checked,urg:quick?0:$('#tu').checked,done:0});save()}
-function vToday(){const d=today(),l=S.tasks.filter(t=>t.date==d||(t.date<d&&!t.done)).sort((a,b)=>a.done-b.done||qo(a)-qo(b)||(a.time||'z').localeCompare(b.time||'z'));
-const dn=S.tasks.filter(t=>t.date==d&&t.done).length,tot=S.tasks.filter(t=>t.date==d).length;
-return `<h1>${fd(d)}</h1><div class="sub">${tot?`${fn(dn)} از ${fn(tot)} کار امروز انجام شد`:'برای امروز کاری ثبت نشده'}</div>
-<div class="card" style="margin-top:12px"><div class="row"><input id="tt" placeholder="کار تازه برای امروز..." onkeydown="event.key=='Enter'&&addTask(1)"><button class="btn n" onclick="addTask(1)" style="margin-bottom:8px">افزودن</button></div>
-${l.length?l.map(taskHtml).join(''):'<div class="sub">لیست امروز خالی است. یک کار اضافه کنید.</div>'}</div>
-<h2>تمرکز ۲۵ دقیقه‌ای</h2><div class="card"><div class="pm" id="pm">${pmTxt()}</div><div class="row" style="margin-top:8px"><button class="btn" id="pmb" onclick="pmTog()">${pm.t?'توقف':'شروع'}</button><button class="btn g" onclick="pmReset()">از نو</button></div></div>`}
+S.tasks.push(quick?{id:uid(),title,date:today(),time:'',imp:0,urg:0,done:0,rep:''}:{id:uid(),title,date:$('#td').value||today(),time:$('#tm').value,imp:$('#ti').checked,urg:$('#tu').checked,rep:$('#tr').value,done:0});save()}
 function vTasks(){let l=[...S.tasks];if(flt=='open')l=l.filter(t=>!t.done);if(flt=='done')l=l.filter(t=>t.done);
 l.sort((a,b)=>a.done-b.done||a.date.localeCompare(b.date)||qo(a)-qo(b));
+const mx=[[0,'الان انجام بده','q1'],[1,'برنامه‌ریزی کن','q2'],[2,'واگذار کن / سریع تمام کن','q3'],[3,'بعداً / شاید حذف','']].map(([k,n,c])=>`<div class="card"><b class="tag ${c}">${n}</b>${l.filter(t=>!t.done&&qo(t)==k).map(taskH).join('')||'<div class="sub" style="margin-top:6px">خالی</div>'}</div>`).join('');
 return `<h1>کارها</h1><div class="card" style="margin-top:12px"><input id="tt" placeholder="عنوان کار">
-<div class="row"><input id="td" type="date" value="${today()}"><input id="tm" type="time"></div>
-<div class="row"><label class="row"><input id="ti" type="checkbox"> مهم</label><label class="row"><input id="tu" type="checkbox"> فوری</label><button class="btn" onclick="addTask()">ثبت کار</button></div></div>
-<div class="row" style="margin-bottom:8px">${[['all','همه'],['open','باز'],['done','انجام‌شده']].map(f=>`<button class="btn ${flt==f[0]?'':'g'}" onclick="flt='${f[0]}';render()">${f[1]}</button>`).join('')}</div>
-<div class="card">${l.length?l.map(taskHtml).join(''):'<div class="sub">کاری پیدا نشد.</div>'}</div>`}
+<div class="row"><input id="td" type="date" value="${today()}"><input id="tm" type="time"><select id="tr"><option value="">بدون تکرار</option><option value="d">روزانه</option><option value="w">هفتگی</option></select></div>
+<div class="row"><label class="row"><input id="ti" type="checkbox"> مهم</label><label class="row"><input id="tu" type="checkbox"> فوری</label><button class="btn p" onclick="addTask()">ثبت کار</button></div></div>
+<div class="row" style="margin-bottom:10px">${[['all','همه'],['open','باز'],['done','انجام‌شده']].map(f=>`<button class="btn ${flt==f[0]?'':'g'}" onclick="flt='${f[0]}';render()">${f[1]}</button>`).join('')}<button class="btn g" onclick="tv=tv=='list'?'mx':'list';render()">${tv=='list'?'نمای ماتریس':'نمای لیست'}</button></div>
+${tv=='mx'?`<div class="mx">${mx}</div>`:`<div class="card">${l.length?l.map(taskH).join(''):'<div class="sub">کاری پیدا نشد.</div>'}</div>`}`}
 
-/* ---------- مالی ---------- */
+/* ===== مالی ===== */
+const mtx=m=>S.tx.filter(x=>jm(x.date)==m),sum=(a,f)=>a.filter(f).reduce((s,x)=>s+x.amt,0);
 function addTx(){const amt=+$('#fa').value;if(!amt||amt<=0)return toast('مبلغ را وارد کنید');
 S.tx.push({id:uid(),type:$('#ft').value,amt,cat:$('#fc').value,date:$('#fd').value||today(),note:$('#fnote').value.trim()});save()}
-function delTx(id){S.tx=S.tx.filter(x=>x.id!=id);save()}
-function fillCats(){const t=$('#ft').value;$('#fc').innerHTML=(t=='in'?INC:Object.keys(CATS)).map(c=>`<option>${c}</option>`).join('')}
-function mv(n){let[y,m]=mo.split('-').map(Number);m+=n;if(m>12){m=1;y++}if(m<1){m=12;y--}mo=y+'-'+String(m).padStart(2,'0');render()}
-function vFin(){const m=S.tx.filter(x=>jm(x.date)==mo).sort((a,b)=>b.date.localeCompare(a.date));
-const sum=f=>m.filter(f).reduce((a,x)=>a+x.amt,0),inc=sum(x=>x.type=='in'),exp=sum(x=>x.type=='out'),[y,mm]=mo.split('-');
-const bud=[['n','نیازها',.5],['w','خواسته‌ها',.3],['s','پس‌انداز',.2]].map(([k,name,p])=>{const a=sum(x=>x.type=='out'&&CATS[x.cat]==k),tg=inc*p,pc=tg?Math.min(100,a/tg*100):0,cls=k=='s'?(a>=tg&&tg?'good':''):(a>tg?'over':'');
-return `<div class="row"><span>${name}</span><span class="sub" style="text-align:left">${fn(a)} از ${fn(tg)}</span></div><div class="bar"><i class="${cls}" style="width:${pc}%"></i></div>`}).join('');
-return `<div class="row"><button class="btn g n" onclick="mv(-1)">›</button><h1 style="text-align:center">${MN[mm-1]} ${Number(y).toLocaleString('fa-IR',{useGrouping:false})}</h1><button class="btn g n" onclick="mv(1)">‹</button></div>
-<div class="card grid" style="margin-top:12px"><div><div class="sub">درآمد</div><div class="big" style="color:var(--ok)">${fn(inc)}</div></div><div><div class="sub">هزینه</div><div class="big" style="color:var(--bad)">${fn(exp)}</div></div><div><div class="sub">مانده</div><div class="big">${fn(inc-exp)}</div></div></div>
-<div class="sub" style="text-align:center">واحد: ${esc(S.cur)}</div>
-<h2>بودجه ۵۰/۳۰/۲۰ بر پایه درآمد این ماه</h2><div class="card">${inc?bud:'<div class="sub">با ثبت درآمد، سقف نیازها (۵۰٪)، خواسته‌ها (۳۰٪) و پس‌انداز (۲۰٪) نمایش داده می‌شود.</div>'}</div>
-<h2>تراکنش تازه</h2><div class="card"><div class="row"><select id="ft" onchange="fillCats()"><option value="out">هزینه</option><option value="in">درآمد</option></select><select id="fc"></select></div>
-<div class="row"><input id="fa" type="number" inputmode="numeric" placeholder="مبلغ"><input id="fd" type="date" value="${today()}"></div>
-<input id="fnote" placeholder="توضیح (اختیاری)"><button class="btn" style="width:100%" onclick="addTx()">ثبت تراکنش</button></div>
-<h2>تراکنش‌های ماه</h2><div class="card">${m.length?m.map(x=>`<div class="t"><div class="b"><div>${esc(x.cat)} <span class="sub">${esc(x.note)}</span></div><div class="sub">${fd(x.date)}</div></div><b style="color:var(--${x.type=='in'?'ok':'bad'})">${x.type=='in'?'+':'-'}${fn(x.amt)}</b><button class="x" onclick="delTx('${x.id}')" aria-label="حذف">✕</button></div>`).join(''):'<div class="sub">در این ماه تراکنشی ثبت نشده.</div>'}</div>`}
+const delTx=id=>{S.tx=S.tx.filter(x=>x.id!=id);save()};
+const fillCats=()=>{const t=$('#ft');if(t)$('#fc').innerHTML=(t.value=='in'?INC:CK).map(c=>`<option>${c}</option>`).join('')};
+const mv=n=>{mo=sh(mo,n);render()};
+const mnav=()=>`<div class="row"><button class="btn g n" onclick="mv(-1)">›</button><h1 style="text-align:center">${mlabel(mo)}</h1><button class="btn g n" onclick="mv(1)">‹</button></div>`;
+function vFin(){const a=mtx(mo),inc=sum(a,x=>x.type=='in'),exp=sum(a,x=>x.type=='out');
+let l=a.filter(x=>flt=='all'||x.type==flt).sort((p,q)=>q.date.localeCompare(p.date));
+return `${mnav()}<div class="grid" style="margin:12px 0"><div class="stat"><div class="sub">درآمد</div><div class="big" style="color:var(--ac2)">${fn(inc)}</div></div><div class="stat"><div class="sub">هزینه</div><div class="big" style="color:var(--bad)">${fn(exp)}</div></div><div class="stat"><div class="sub">مانده (${esc(S.cur)})</div><div class="big">${fn(inc-exp)}</div></div></div>
+<div class="card"><div class="row"><select id="ft" onchange="fillCats()"><option value="out">هزینه</option><option value="in">درآمد</option></select><select id="fc"></select></div>
+<div class="row"><input id="fa" type="number" inputmode="numeric" placeholder="مبلغ"><input id="fd" type="date" value="${today()}"></div><input id="fnote" placeholder="توضیح (اختیاری)"><button class="btn p" style="width:100%" onclick="addTx()">ثبت تراکنش</button></div>
+<div class="row" style="margin-bottom:10px">${[['all','همه'],['in','درآمد'],['out','هزینه']].map(f=>`<button class="btn ${flt==f[0]?'':'g'}" onclick="flt='${f[0]}';render()">${f[1]}</button>`).join('')}</div>
+<div class="card">${l.length?l.map(x=>`<div class="t"><div class="b"><div>${esc(x.cat)} <span class="sub">${esc(x.note)}</span></div><div class="sub">${fd(x.date)}${x.sms?' • پیامک':''}</div></div><b style="color:var(--${x.type=='in'?'ac2':'bad'})">${x.type=='in'?'+':'-'}${fn(x.amt)}</b><button class="x" onclick="delTx('${x.id}')" aria-label="حذف">✕</button></div>`).join(''):'<div class="sub">تراکنشی برای نمایش نیست.</div>'}</div>`}
 
-/* ---------- پومودورو ---------- */
-let pm={l:1500,t:null};
-const pmTxt=()=>Math.floor(pm.l/60).toLocaleString('fa-IR',{minimumIntegerDigits:2})+':'+(pm.l%60).toLocaleString('fa-IR',{minimumIntegerDigits:2});
-function pmUp(){const e=$('#pm');if(e)e.textContent=pmTxt();const b=$('#pmb');if(b)b.textContent=pm.t?'توقف':'شروع'}
-function pmTog(){if(pm.t){clearInterval(pm.t);pm.t=null}else pm.t=setInterval(()=>{pm.l--;if(pm.l<=0){clearInterval(pm.t);pm.t=null;pm.l=1500;toast('وقت استراحت است');navigator.vibrate&&navigator.vibrate(400)}pmUp()},1000);pmUp()}
-function pmReset(){clearInterval(pm.t);pm.t=null;pm.l=1500;pmUp()}
+/* ===== بودجه و هدف ===== */
+const setLim=(i,v)=>{S.limits[CK[i]]=+v||0;save()};
+function vBudget(){const a=mtx(mo),inc=sum(a,x=>x.type=='in');
+const g=k=>sum(a,x=>x.type=='out'&&CATS[x.cat]==k);
+const b=[['n','نیازها',.5],['w','خواسته‌ها',.3],['s','پس‌انداز',.2]].map(([k,n,p])=>{const v=g(k),t=inc*p,pc=t?Math.min(100,v/t*100):0;return `<div class="row"><span>${n} (${fn(p*100)}٪)</span><span class="sub" style="text-align:left">${fn(v)} از ${fn(t)}</span></div><div class="bar"><i class="${k!='s'&&v>t?'over':''}" style="width:${pc}%"></i></div>`}).join('');
+const saved=sum(S.tx,x=>x.type=='out'&&CATS[x.cat]=='s'),gt=S.goal.target,gp=gt?Math.min(100,saved/gt*100):0;
+return `${mnav()}<h2>بودجه ۵۰/۳۰/۲۰ بر پایه درآمد ماه</h2><div class="card">${inc?b:'<div class="sub">با ثبت درآمد این ماه، سقف‌ها محاسبه می‌شود.</div>'}</div>
+<h2>سقف ماهانه هر دسته (۰ = بدون سقف)</h2><div class="card">${CK.map((c,i)=>{const v=sum(a,x=>x.type=='out'&&x.cat==c),l=S.limits[c]||0;return `<div class="row"><span>${c}</span><input type="number" inputmode="numeric" value="${l||''}" placeholder="سقف" onchange="setLim(${i},this.value)"></div>${l?`<div class="bar"><i class="${v>l?'over':''}" style="width:${Math.min(100,v/l*100)}%"></i></div><div class="sub" style="margin:-6px 0 8px">${fn(v)} از ${fn(l)}</div>`:''}`}).join('')}</div>
+<h2>هدف پس‌انداز</h2><div class="card"><input placeholder="نام هدف (مثلاً سفر)" value="${esc(S.goal.name)}" onchange="S.goal.name=this.value;save()"><input type="number" inputmode="numeric" placeholder="مبلغ هدف" value="${gt||''}" onchange="S.goal.target=+this.value||0;save()">
+<div class="bar"><i style="width:${gp}%"></i></div><div class="sub">پس‌انداز و سرمایه‌گذاری ثبت‌شده تاکنون: ${fn(saved)} (${fn(gp)}٪)</div></div>`}
 
-/* ---------- تنظیمات و همگام‌سازی گوگل ---------- */
-let tok=null,tc=null,gst='متصل نیست';
-function vSet(){return `<h1>تنظیمات</h1>
-<h2>واحد پول</h2><div class="card"><input value="${esc(S.cur)}" onchange="S.cur=this.value;save()"></div>
-<h2>همگام‌سازی با حساب گوگل</h2><div class="card"><div class="sub" style="margin-bottom:8px">داده‌ها در پوشه خصوصی برنامه در Google Drive حساب Gmail شما ذخیره می‌شوند. اتصال نیاز به Client ID دارد (راهنما در فایل README.md). حتی بدون اتصال، همه‌چیز خودکار روی همین دستگاه ذخیره می‌شود.</div>
-<input id="cid" placeholder="Google OAuth Client ID" value="${esc(CID)}" dir="ltr">
-<div class="row"><button class="btn" onclick="gConnect()">اتصال و همگام‌سازی</button><button class="btn g" onclick="gSync()">همگام‌سازی دستی</button></div><div class="sub" style="margin-top:8px">وضعیت: ${gst}</div></div>
-<h2>نسخه پشتیبان</h2><div class="card"><div class="row"><button class="btn g" onclick="exp()">دریافت فایل پشتیبان</button><button class="btn g" onclick="$('#imp').click()">بازیابی از فایل</button></div><input id="imp" type="file" accept=".json" hidden onchange="imp(this.files[0])"></div>`}
+/* ===== پیامک ===== */
+const dig=s=>s.replace(/[۰-۹]/g,c=>'۰۱۲۳۴۵۶۷۸۹'.indexOf(c)).replace(/[٠-٩]/g,c=>'٠١٢٣٤٥٦٧٨٩'.indexOf(c)).replace(/٬/g,',');
+const GUESS=[['حمل‌ونقل',/اسنپ|تپسی|snapp|tapsi|مترو|بنزین|اتوبوس/i],['رستوران',/رستوران|کافه|فست|اسنپ ?فود|snappfood/i],['قبض',/قبض|برق|گاز|اینترنت|همراه اول|ایرانسل|رایتل|شارژ/i],['درمان',/دارو|بیمارستان|درمانگاه|کلینیک|پزشک/i],['خوراک',/سوپر|هایپر|نانوایی|میوه|قصابی/i],['خرید',/دیجی|digikala|فروشگاه|خرید/i]];
+const hash=s=>{let h=0;for(const c of s)h=(h*31+c.charCodeAt(0))|0;return String(h)};
+function parseSms(raw){const t=dig(raw),body=t.replace(/(مانده|موجودی|balance|bal)[^\d]{0,12}[\d,.]+/gi,'');
+const m=body.match(/\d{1,3}(?:,\d{3})+|\d{4,}/g);if(!m)return null;
+const iI=body.search(/واریز|دریافت|deposit|credit|variz/i),iO=body.search(/برداشت|خرید|پرداخت|انتقال|کارت به کارت|debit|withdraw|purchase/i);if(iI<0&&iO<0)return null;
+const type=iI>=0&&(iO<0||iI<iO)?'in':'out';let amt=+m[0].replace(/,/g,'');if(/ریال|rial|irr/i.test(body)&&S.cur=='تومان')amt=Math.round(amt/10);
+const cat=type=='in'?(/حقوق|یارانه/.test(body)?'حقوق':'سایر'):((GUESS.find(g=>g[1].test(body))||[])[0]||'سایر');
+return {type,amt,cat,date:today(),note:raw.trim().slice(0,40),sms:hash(raw.trim()),on:!S.seen.includes(hash(raw.trim()))}}
+function analyze(quiet){smsText=($('#sm')?$('#sm').value:smsText);let p=smsText.split(/\n\s*\n/);if(p.length==1)p=smsText.split('\n');
+smsItems=p.filter(x=>x.trim()).map(parseSms).filter(Boolean);if(!quiet){if(!smsItems.length)toast('تراکنشی در متن پیدا نشد');render()}}
+function smsAdd(){const sel=smsItems.filter(x=>x.on);sel.forEach(x=>{S.tx.push({id:uid(),type:x.type,amt:x.amt,cat:x.cat,date:x.date,note:x.note,sms:1});S.seen.push(x.sms)});
+smsItems=[];smsText='';save();toast(fn(sel.length)+' تراکنش اضافه شد')}
+const smsSet=(i,k,v)=>{smsItems[i][k]=v;if(k=='type'){smsItems[i].cat=v=='in'?'سایر':smsItems[i].cat;}render()};
+function vSms(){const base=location.origin+location.pathname;
+return `<h1>ثبت از پیامک</h1><div class="sub" style="margin:4px 0 12px">مرورگر اجازه خواندن مستقیم پیامک‌ها را نمی‌دهد. سه راه امن و عملی:</div>
+<div class="card"><b>۱) چسباندن:</b> پیامک بانک را کپی و اینجا بچسبانید (چند پیامک را با خط خالی جدا کنید).<textarea id="sm" rows="5" placeholder="مثلاً: برداشت ۱۲۰,۰۰۰ ریال ... مانده ۵,۰۰۰,۰۰۰">${esc(smsText)}</textarea><button class="btn p" style="width:100%" onclick="analyze()">تحلیل پیامک‌ها</button></div>
+${smsItems.length?`<div class="card">${smsItems.map((x,i)=>`<div class="t"><input type="checkbox" ${x.on?'checked':''} onchange="smsItems[${i}].on=this.checked"><div class="b"><div>${x.type=='in'?'واریز':'برداشت'} <b>${fn(x.amt)}</b> ${x.on?'':'<span class="tag">قبلاً ثبت شده</span>'}</div><select onchange="smsSet(${i},'cat',this.value)">${(x.type=='in'?INC:CK).map(c=>`<option ${c==x.cat?'selected':''}>${c}</option>`).join('')}</select></div></div>`).join('')}<button class="btn p" style="width:100%" onclick="smsAdd()">افزودن موارد انتخاب‌شده</button></div>`:''}
+<div class="card"><b>۲) اشتراک‌گذاری (اندروید، پس از نصب برنامه):</b> روی پیامک بزنید، Share و بعد «برنامه‌ریز» را انتخاب کنید؛ متن اینجا آماده تایید می‌شود.</div>
+<div class="card"><b>۳) خودکار با MacroDroid یا Tasker:</b> محرک «دریافت پیامک از شماره بانک» و عمل «Open URL» با آدرس زیر:<input readonly dir="ltr" value="${esc(base)}?sms=[sms_message]" onclick="this.select()"><div class="sub">پس از دریافت پیامک، برنامه با متن آماده باز می‌شود و فقط یک تایید لازم است. مبلغ‌های «ریال» خودکار به تومان تبدیل می‌شوند.</div></div>`}
+
+/* ===== داشبورد ===== */
+function vDash(){const d=today(),a=mtx(mo),inc=sum(a,x=>x.type=='in'),exp=sum(a,x=>x.type=='out'),h=new Date().getHours();
+const tl=S.tasks.filter(t=>!t.done&&t.date<=d).sort((p,q)=>qo(p)-qo(q)||p.date.localeCompare(q.date)),dn=S.tasks.filter(t=>t.date==d&&t.done).length,tot=S.tasks.filter(t=>t.date==d).length;
+const ms=[5,4,3,2,1,0].map(i=>{const m=sh(mo,-i),z=mtx(m);return [m,sum(z,x=>x.type=='in'),sum(z,x=>x.type=='out')]}),mx=Math.max(1,...ms.map(x=>Math.max(x[1],x[2])));
+const over=CK.filter(c=>S.limits[c]&&sum(a,x=>x.type=='out'&&x.cat==c)>S.limits[c]);
+return `<div class="row" style="margin-bottom:14px"><div class="b"><h1>${h<12?'صبح بخیر':h<18?'روز بخیر':'عصر بخیر'}، ${esc((U.name||'').split(' ')[0])}</h1><div class="sub">${fd(d)}</div></div></div>
+<div class="grid"><div class="stat"><div class="sub">کار امروز</div><div class="big">${fn(dn)} از ${fn(tot)}</div></div><div class="stat"><div class="sub">درآمد ${MN[mo.split('-')[1]-1]}</div><div class="big" style="color:var(--ac2)">${fn(inc)}</div></div><div class="stat"><div class="sub">هزینه ${MN[mo.split('-')[1]-1]}</div><div class="big" style="color:var(--bad)">${fn(exp)}</div></div><div class="stat"><div class="sub">نرخ پس‌انداز</div><div class="big">${inc?fn((inc-exp)/inc*100):'—'}٪</div></div></div>
+${over.length?`<div class="card" style="margin-top:12px;border-color:var(--bad)">⚠ از سقف این دسته‌ها گذشته‌اید: ${over.join('، ')}</div>`:''}
+<h2>۶ ماه اخیر</h2><div class="card"><div class="ch">${ms.map(([m,i,o])=>`<div><div class="p"><i style="height:${i/mx*100}%;background:var(--ac)"></i><i style="height:${o/mx*100}%;background:var(--bad)"></i></div><span class="sub">${MN[m.split('-')[1]-1]}</span></div>`).join('')}</div><div class="sub" style="margin-top:6px">سبز: درآمد • قرمز: هزینه</div></div>
+<h2>کارهای پیش رو</h2><div class="card"><div class="row" style="margin-bottom:6px"><input id="tt" placeholder="کار سریع برای امروز..." onkeydown="event.key=='Enter'&&addTask(1)"><button class="btn p n" style="margin-bottom:8px" onclick="addTask(1)">افزودن</button></div>${tl.slice(0,6).map(taskH).join('')||'<div class="sub">همه کارها انجام شده است.</div>'}</div>`}
+
+/* ===== تنظیمات ===== */
+function vSet(){return `<h1>تنظیمات</h1><div class="card row"><div class="b"><b>${esc(U.name)}</b><div class="sub">${esc(U.email||'حالت محلی (بدون حساب)')}</div></div><button class="btn g n" onclick="logout()">خروج</button></div>
+${U.id!='local'?`<div class="card"><div class="sub">وضعیت Drive: ${gst}</div><div class="row" style="margin-top:8px"><button class="btn p" onclick="gAuth()">اتصال / همگام‌سازی</button></div></div>`:'<div class="card sub">برای همگام‌سازی بین دستگاه‌ها، خارج شوید و با گوگل وارد شوید.</div>'}
+<h2>واحد پول</h2><div class="card"><select onchange="S.cur=this.value;save()">${['تومان','ریال','دلار','یورو'].map(c=>`<option ${c==S.cur?'selected':''}>${c}</option>`).join('')}</select></div>
+<h2>پشتیبان</h2><div class="card"><div class="row"><button class="btn g" onclick="exp()">دریافت فایل پشتیبان</button><button class="btn g" onclick="$('#imp').click()">بازیابی از فایل</button></div><input id="imp" type="file" accept=".json" hidden onchange="imp(this.files[0])"></div>`}
 function exp(){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(S)],{type:'application/json'}));a.download='planner-backup-'+today()+'.json';a.click()}
-function imp(f){if(!f)return;f.text().then(t=>{try{const d=JSON.parse(t);if(!d.tasks||!d.tx)throw 0;S=d;save();toast('بازیابی شد')}catch(e){toast('فایل پشتیبان معتبر نیست')}})}
-function gConnect(){CID=$('#cid').value.trim();localStorage.setItem('planner_cid',CID);
-if(!CID)return toast('Client ID را وارد کنید');if(!window.google||!google.accounts)return toast('اینترنت لازم است');
-tc=google.accounts.oauth2.initTokenClient({client_id:CID,scope:'https://www.googleapis.com/auth/drive.appdata',callback:r=>{if(r.access_token){tok=r.access_token;localStorage.setItem('planner_g','1');gSync()}else{gst='اتصال ناموفق بود';render()}}});
-tc.requestAccessToken({prompt:'consent'})}
-async function gapi(u,o={}){const r=await fetch(u,{...o,headers:{Authorization:'Bearer '+tok,...(o.headers||{})}});if(!r.ok)throw new Error(r.status);return r}
-const D='https://www.googleapis.com/drive/v3/files';
-async function fid(){const r=await(await gapi(D+'?spaces=appDataFolder&q=name%3D%27planner.json%27&fields=files(id)')).json();return r.files[0]&&r.files[0].id}
-async function gPush(){let id=await fid();if(!id){id=(await(await gapi(D,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:'planner.json',parents:['appDataFolder']})})).json()).id}
-await gapi('https://www.googleapis.com/upload/drive/v3/files/'+id+'?uploadType=media',{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify(S)})}
-async function gSync(){if(!tok)return toast('ابتدا وصل شوید');try{const id=await fid();
-if(id){const r=await(await gapi(D+'/'+id+'?alt=media')).json();if(r.ts>S.ts){S=r;localStorage.setItem(KEY,JSON.stringify(S))}}
-await gPush();gst='همگام شد '+new Date().toLocaleTimeString('fa-IR');render()}catch(e){tok=null;gst='خطا یا انقضای اتصال؛ دوباره وصل شوید';render()}}
-let pt;function schedPush(){if(!tok)return;clearTimeout(pt);pt=setTimeout(()=>gPush().catch(()=>{tok=null;gst='اتصال منقضی شد؛ دوباره وصل شوید'}),1500)}
+const imp=f=>f&&f.text().then(t=>{try{const d=JSON.parse(t);if(!d.tasks||!d.tx)throw 0;S={...DEF(),...d};save();toast('بازیابی شد')}catch(e){toast('فایل معتبر نیست')}});
 
-function render(){$('#nav').innerHTML=tabs.map(t=>`<button class="${tab==t[0]?'on':''}" onclick="go('${t[0]}')">${t[1]}</button>`).join('');
-$('#app').innerHTML=({today:vToday,tasks:vTasks,fin:vFin,set:vSet})[tab]();if(tab=='fin')fillCats()}
-render();
+const TABS=[['dash','🏠','خانه'],['tasks','✅','کارها'],['fin','💳','مالی'],['budget','🎯','بودجه'],['sms','💬','پیامک'],['set','⚙️','تنظیمات']];
+function render(){document.body.className=U?'in':'';
+if(!U){$('#app').innerHTML=vLogin();return}
+$('#nav').innerHTML=TABS.map(t=>`<button class="${tab==t[0]?'on':''}" onclick="go('${t[0]}')"><span>${t[1]}</span>${t[2]}</button>`).join('');
+const need=U.id!='local'&&!tok;
+$('#app').innerHTML=(need?`<div class="card row" style="border-color:var(--gold)"><span class="sub">برای همگام‌سازی با Drive دوباره وصل شوید.</span><button class="btn p n" onclick="gAuth()">اتصال</button></div>`:'')+({dash:vDash,tasks:vTasks,fin:vFin,budget:vBudget,sms:vSms,set:vSet})[tab]();fillCats()}
+function boot(){if(U){load();if(pend){tab='sms';smsText=pend;pend='';analyze(true)}}render()}
+boot();
 if('serviceWorker' in navigator&&location.protocol.startsWith('http'))navigator.serviceWorker.register('sw.js').catch(()=>{});
 </script>
 <script src="https://accounts.google.com/gsi/client" async defer></script>

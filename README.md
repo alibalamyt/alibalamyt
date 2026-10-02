@@ -1,23 +1,15 @@
-# راهنمای راه‌اندازی
+# راه‌اندازی برنامه‌ریز
 
-## ۱) اجرای فوری روی گوشی (بدون اتصال گوگل)
-فایل index.html را در مرورگر گوشی باز کنید. همه‌چیز خودکار روی گوشی ذخیره می‌شود.
-برای نسخه پشتیبان: تنظیمات > دریافت فایل پشتیبان.
+## ۱) انتشار (رایگان، از خود گوشی)
+چهار فایل index.html، manifest.json، sw.js و icon.svg را در یک مخزن GitHub آپلود کنید و Settings > Pages را روی شاخه main فعال کنید (یا Netlify Drop).
+آدرس https://USERNAME.github.io/REPO را در Chrome باز کنید و Add to Home screen بزنید.
 
-## ۲) نسخه قابل نصب روی گوشی (رایگان، بدون نیاز به کامپیوتر)
-۱. در گوشی یک حساب GitHub بسازید و یک مخزن (Repository) عمومی بسازید.
-۲. با گزینه Add file > Upload files چهار فایل index.html، manifest.json، sw.js و icon.svg را آپلود کنید.
-۳. در Settings > Pages شاخه main را فعال کنید. بعد از چند دقیقه آدرس https://USERNAME.github.io/REPO پدید می‌آید.
-۴. آدرس را در Chrome باز کنید و Add to Home screen (یا Install app) را بزنید. مثل یک اپ نصب می‌شود و آفلاین هم کار می‌کند.
-(جایگزین: سایت Netlify Drop یا Cloudflare Pages)
+## ۲) ورود با گوگل برای همه کاربران
+1. console.cloud.google.com > پروژه جدید > APIs & Services > Library > Google Drive API را Enable کنید.
+2. OAuth consent screen: نوع External. اطلاعات پایه را پر کنید و روی Publish app (In production) بزنید؛ اسکوپ drive.appdata حساس نیست و نیاز به تایید گوگل ندارد، پس هر کسی با Gmail می‌تواند وارد شود.
+3. Credentials > Create credentials > OAuth client ID > Web application. در Authorized JavaScript origins آدرس سایت را بدون اسلش آخر بنویسید (مثل https://USERNAME.github.io).
+4. Client ID را در index.html، خط اول اسکریپت (CLIENT_ID)، قرار دهید و دوباره آپلود کنید. (یا هنگام اولین ورود در صفحه لاگین وارد کنید.)
+هر کاربر داده‌ها را فقط در Drive شخصی خودش (پوشه خصوصی برنامه) دارد و سرور یا هزینه‌ای در کار نیست.
 
-## ۳) اتصال به حساب گوگل (Google Drive)
-فقط روی آدرس https (مرحله ۲) کار می‌کند، نه روی فایل محلی.
-۱. console.cloud.google.com > پروژه جدید.
-۲. APIs & Services > Library > Google Drive API را Enable کنید.
-۳. OAuth consent screen: نوع External، ایمیل خودتان را در Test users اضافه کنید.
-۴. Credentials > Create credentials > OAuth client ID > Web application.
-۵. در Authorized JavaScript origins آدرس سایت خود را بدون اسلش آخر بنویسید (مثل https://USERNAME.github.io).
-۶. Client ID را در برنامه، بخش تنظیمات، وارد کنید و «اتصال و همگام‌سازی» را بزنید.
-روی گوشی و کامپیوتر با همان Client ID وصل شوید تا داده‌ها بین هر دو یکی شود.
-داده‌ها فقط در پوشه خصوصی برنامه در Drive شما ذخیره می‌شوند (scope: drive.appdata).
+## ۳) ثبت خودکار از پیامک
+مرورگر و PWA اجازه خواندن مستقیم پیامک را ندارند. راه‌ها داخل برنامه، بخش «پیامک» توضیح داده شده: چسباندن، اشتراک‌گذاری (Share) و اتوماسیون با MacroDroid/Tasker.
